@@ -147,3 +147,63 @@ void Dealer::updateScore() {
 size_t Dealer::getHandSize() const {
     return hand.size();
 }
+
+// Constructor for the Game class
+Game::Game() {
+	deck.shuffle(); // Start by shuffling the deck
+}
+
+// Play method implementation
+void Game::play() {
+	bool continuePlaying = true;
+
+	while (continuePlaying) {
+    	dealInitialCards(); // Deal initial cards to both player and dealer
+    	player.playTurn(deck); // Handle the player's turn
+    	dealer.playTurn(deck); // Handle the dealer's turn
+    	determineWinner(); // Determine the winner of the game
+
+    	// Ask the player if they want to play again
+    	char choice;
+    	std::cout << "Do you want to play again? (y/n): ";
+    	std::cin >> choice;
+    	if (choice != 'y') {
+        	continuePlaying = false;
+    	} else {
+        	// Reset the game state if necessary
+        	player.resetHand();
+        	dealer.addCardToHand(deck.dealCard()); // reset dealer's hand
+        	deck.shuffle(); // Shuffle the deck before the next round
+    	}
+	}
+}
+
+// Method to deal initial cards to both player and dealer
+void Game::dealInitialCards() {
+	player.receiveCard(deck.dealCard()); // Deal first card to player
+	player.receiveCard(deck.dealCard()); // Deal second card to player
+
+	dealer.addCardToHand(deck.dealCard()); // Deal first card to dealer
+	dealer.addCardToHand(deck.dealCard()); // Deal second card to dealer
+}
+
+// Method to determine the winner of the game
+void Game::determineWinner() {
+	int playerScore = player.getScore();
+	int dealerScore = dealer.getScore();
+
+	std::cout << "Player's score: " << playerScore << "\n";
+	std::cout << "Dealer's score: " << dealerScore << "\n";
+
+	if (playerScore > 21) {
+    	std::cout << "Player busts! Dealer wins.\n";
+	} else if (dealerScore > 21) {
+    	std::cout << "Dealer busts! Player wins.\n";
+	} else if (playerScore > dealerScore) {
+    	std::cout << "Player wins!\n";
+	} else if (dealerScore > playerScore) {
+    	std::cout << "Dealer wins!\n";
+	} else {
+    	std::cout << "It's a tie!\n";
+	}
+}
