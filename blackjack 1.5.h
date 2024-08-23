@@ -86,57 +86,7 @@ private:
 
     // Method to update the player's score based on the current hand
     void updateScore();
-};
-
-// Implementation of Player methods
-Player::Player() : score(0) {}
-
-void Player::receiveCard(const Card& card) {
-    hand.push_back(card);
-    updateScore();
-}
-
-bool Player::wantsToHit() const {
-    char choice;
-    std::cout << "Your current score is " << score << ". Do you want to (h)it or (s)tand? ";
-    std::cin >> choice;
-    return choice == 'h' || choice == 'H';
-}
-
-int Player::getScore() const {
-    return score;
-}
-
-void Player::resetHand() {
-    hand.clear();
-    score = 0;
-}
-
-void Player::updateScore() {
-    score = 0;
-    int aceCount = 0;
-
-    for (const Card& card : hand) {
-        int value = card.getValue();
-        if (value == 11) { // Ace
-            aceCount++;
-        }
-        score += value;
-    }
-
-    // Adjust score if there are aces and the score is over 21
-    while (score > 21 && aceCount > 0) {
-        score -= 10;
-        aceCount--;
-    }
-	// New method to Handle the Player's Turn 
-	void Player::playTurn(Deck& deck) { 
-		while (wantsToHit()) { 
-			receiveCard(deck.dealCard()); 
-		}
-}
-
-			
+};			
 class Dealer {  
 public: 
 	Dealer() ; //constructor 
