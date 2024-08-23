@@ -77,6 +77,8 @@ public:
 
     // Method to reset the player's hand (for a new game)
     void resetHand();
+// New method to handle the player's turn 
+	void playTurn(Deck& deck);
 
 private:
     std::vector<Card> hand; // The player's hand
@@ -127,6 +129,11 @@ void Player::updateScore() {
         score -= 10;
         aceCount--;
     }
+	// New method to Handle the Player's Turn 
+	void Player::playTurn(Deck& deck) { 
+		while (wantsToHit()) { 
+			receiveCard(deck.dealCard()); 
+		}
 }
 
 			
