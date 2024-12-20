@@ -135,7 +135,13 @@ void Dealer::updateScore() {
 }
 size_t Dealer::getHandSize() const {
     return hand.size();
-}
+} 
+
+// Adding a reset hand method 
+void Dealer::resetHand() { 
+	hand.clear(); // clear the hand
+	score=0; // reste the score  
+} 
 
 // Constructor for the Game class
 Game::Game() {
@@ -161,7 +167,7 @@ void Game::play() {
     	} else {
         	// Reset the game state if necessary
         	player.resetHand();
-        	dealer.addCardToHand(deck.dealCard()); // reset dealer's hand
+        	dealer.resetHand(); // reset dealer's hand properly
         	deck.shuffle(); // Shuffle the deck before the next round
     	}
 	}
