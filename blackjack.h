@@ -94,6 +94,7 @@ public:
 	void addCardToHand(Card card); // Add a card to the dealer's hand 
 	int getScore() const; // Calculate and return the dealer's score
 	size_t getHandSize() const; //Return the number of cards
+	void resteHand();  // Adding reset hand
 private:
 	std::vector<Card> hand; //The dealer's hands of cards 
 	int score; // The dealer's current score 
