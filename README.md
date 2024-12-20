@@ -1,16 +1,5 @@
 # Blackjack AI  
 
-## Current game state 12-19-2024 
---> Game is running with no compile errors. 
--->Correct Key binds, meaning if users press H or S the code will capture and base the game off the decisions  
-
-## Whats Broken 
---> curren game logic is weak, the dealer score does not get reset after playing one turn.  
-
-
-## Steps to make the project work
-A future patch is coming to first game logic, then implement monte-carlo method for AI aspect of the game. 
-
 
 ## These are future goals below for I want the game is down below 
 
